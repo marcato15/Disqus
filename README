@@ -1,0 +1,23 @@
+*INSTALL*
+Unzip the file and rename the folder to disqus. Then upload it to your third party directory to install it.  
+
+*TAG USAGE*
+This module provides you with 3 tags. 
+
+{exp:disqus:link id="{entry_id}" link="{url}"}
+
+{exp:disqus:comment id="{entry_id}"}
+
+{exp:disqus:sync int="5"}
+
+
+exp:disqus:link takes the entry_id parameter (required) and a possible link prefix (to link to other pages disqus section). This will load a link to the Disqus comments section as well as display the number of comments and reactiongs.
+
+exp:disqus:comment takes the entry_id parameter (required) and outputs the proper Disqus js for comments section
+
+exp:disqus:sync takes an int parameter (optional) and will sync your Disqus comments (configured in the CP) and turn them into EE comments. You can put this tag in a well visited template and it will only run once every 60 minutes. You can change this by putting in a number in the int parameter. This is the interval you want to synchronize comments. If you want to do it on every page load (NOT ADVISABLE) use the parameter int="NOW" .
+
+You will also be provided a link to run the sync operation from a url so you can setup a cron job to do this automatically.
+
+You will install the plugin and then setup your forum shortname for the javascript tags. In order to use the sync tag you will need to setup an Application in Disqus and input your Secret Key from Disqus.
+

@@ -20,5 +20,7 @@ exp:disqus:sync takes an int parameter (optional) and will sync your Disqus comm
 
 You will also be provided a link to run the sync operation from a url so you can setup a cron job to do this automatically.
 
-You will install the plugin and then setup your forum shortname for the javascript tags. In order to use the sync tag you will need to setup an Application in Disqus and input your Secret Key from Disqus.
+You will install the plugin and then setup your forum shortname for the javascript tags. In order to use the sync tag you will need to setup an Application in Disqus and input your Secret Key from Disqus. 
+
+Example usage of Comments. For SEO purposes you may want to spit out comments in the HTML so Google can know they are there since DISQUS uses all JS. Just output your comments like normal from EE, and if JS is working, then hide the comment div and show the JS. 
 

@@ -76,13 +76,16 @@ class Disqus_mcp {
   	$vars['action_url'] = 'C=addons_modules'.AMP.'M=show_module_cp'.AMP.'module=disqus';
   	$vars['form_hidden'] = NULL;
 		 
-    $this->data['echo'] = "<h1>Disqus Sync</h1>
-   <p>Use the link below to synchronize the comments from your Disqus Account. The best way to utilize this is to setup a Cron job pointed at the URL below</p>";
-   	$action_id = $this->EE->cp->fetch_action_id('Disqus', 'Sync');
+		
+    $this->data['echo'] = "<h1>Disqus Sync</h1>";
+    if(	$this->settings['shortname'] != ""){ 
 
-     $this->data['echo'] = "<p>Disqus Sync URL - <a href=\"http://".$_SERVER['SERVER_NAME']."/?ACT=".$action_id."\"
-     http://".$_SERVER['SERVER_NAME']."/?ACT=".$action_id.". Click this link to manually sync comments or to setup a cron job for automatic syncing.</p>";
+   	$action_id = $this->EE->cp->fetch_action_id('Disqus', 'Sync');
+    $link = 'http://'.$_SERVER['SERVER_NAME'].'/?ACT='.$action_id;
+
+     $this->data['echo'] = "<p>Disqus Sync URL  - <a href=\"$link\">$link</a>. Click this link to manually sync comments or to setup a cron job for automatic syncing.</p>";
         	 
+   }
 
 		// load libraries
 		$this->EE->load->library('form_validation');

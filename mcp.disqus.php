@@ -120,16 +120,12 @@ class Disqus_mcp {
 			$this->EE->functions->redirect(BASE.AMP.'C=addons_modules'.AMP.'M=show_module_cp'.AMP.'module=disqus');
 		}
 
-		// Set page title
-//		$this->EE->cp->set_variable('cp_page_title', $this->EE->lang->line('safeharbor_module_name_settings'));
+
 
 		// set navigation
 		$this->EE->cp->set_right_nav(array(
 			'Home'=> BASE.AMP.'C=addons_modules'.AMP.'M=show_module_cp'.AMP.'module=disqus'
 		));
-
-	$this->shortname = "biblicalcounselingcoalition"; //THe forum $this->shortname for your Disqus account
-  $this->secret_key = "xkg5aegXtPdSQHe5zgVb60FswNdBMD5tQ6nKfgIL8rxWDCFZOgXCnw1IIhOxZs4J"; //Disqus API Secret KEY
 
 
 		// send data to view

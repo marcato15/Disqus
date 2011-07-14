@@ -87,7 +87,7 @@ class Disqus {
             (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
         }());
     </script>";
-     $this->return_data .= '<a href="'.$link.'#disqus_thread" data-disqus-identifier="'.$this->settings['shortname'].'_'.$id.'">Discussion</a>';
+     $this->return_data .= '<a href="'.$link.'#disqus_thread" data-disqus-identifier="'.$this->settings['shortname'].'_'.$id.'" class="disqus-comment-link">Discussion</a>';
      return $this->return_data;
  	  
  	}
@@ -195,8 +195,29 @@ class Disqus {
         
            }
            
+		$this->delete_spam($disqus);
 
     
+	}
+	
+	private function delete_spam($disqus){
+		$spam = $disqus->posts->list(array('include'=>'spam'));
+		$delete = $disqus->posts->list(array('include'=>'deleted'));        
+		$bad = array_merge($spam,$delete);
+		$ids = array();
+		foreach($bad as $comment){
+			$ids[] = $comment->id;                    
+		}
+		if(count($ids) > 0){
+			$idstring = implode(",",$ids);			
+			$sql = "SELECT entry_id FROM exp_comments WHERE comment_id IN ($idstring)";
+			$result = $this->EE->db->query($sql);
+			if ($result->num_rows() > 0)
+			{//If there are any comments that need to be deleted, delete them			
+				$sql = "DELETE FROM exp_comments WHERE comment_id IN ($idstring)";
+				$result = $this->EE->db->query($sql);	
+			}
+		}
 	}
 	
 	private function save_settings(){

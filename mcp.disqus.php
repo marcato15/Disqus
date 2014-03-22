@@ -62,8 +62,7 @@ class Disqus_mcp {
 	 */
 	public function index()
 	{
-		$this->EE->cp->set_variable('cp_page_title', 
-								lang('disqus_module_name'));
+		$this->EE->view->cp_page_title = 'Disqus';
 		
 		/**
 		 * This is the addons home page, add more code here!
@@ -72,7 +71,7 @@ class Disqus_mcp {
    	$this->EE->load->library('javascript');
    	$this->EE->load->library('table');
    	$this->EE->load->helper('form');
-  	$this->EE->cp->set_variable('cp_page_title', $this->EE->lang->line('disqus_module_name'));
+  	$this->EE->view->cp_page_title = 'Disqus Sync';
   	$vars['action_url'] = 'C=addons_modules'.AMP.'M=show_module_cp'.AMP.'module=disqus';
   	$vars['form_hidden'] = NULL;
 		 
